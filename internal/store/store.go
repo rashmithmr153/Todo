@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"todo/todo"
+	"todo/internal/todo"
 )
 
 type Store struct {
@@ -75,8 +75,26 @@ func (s *Store) Delete(Id int) error {
 func (s *Store) MarkDone(Id int) error {
 	for k, v := range s.Todos {
 		if v.Id == Id {
-			s.Todos[k].Done = true
+			s.Todos[k].Done = !s.Todos[k].Done
 		}
 	}
 	return s.Save()
+}
+
+func (s *Store) List() {
+	if len(s.Todos) == 0 {
+		fmt.Println("Empty list")
+		return
+	}
+	fmt.Println("STATUS\tID\tTITLE\tDATE")
+	for _, v := range s.Todos {
+		done := "[ ]"
+		if v.Done {
+			done = "[✓]"
+		}
+		id := v.Id
+		title := v.Title
+		date := v.CreatedAt.Format("02/01/2006")
+		fmt.Printf("%s\t%d.\t%s\t%s \n", done, id, title, date)
+	}
 }
