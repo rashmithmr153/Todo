@@ -1,4 +1,4 @@
-#TODO cli program
+# TODO cli program
 
 A terminal-based todo program written in Go, usable directly in your terminal using raw keyboard input.
 
