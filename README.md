@@ -17,7 +17,7 @@ cd Todo
 go install
 ```
 
-## Running the Game
+## Running the Program
 ```bash
 todo  -for tui
 todo [option][value] for cli
